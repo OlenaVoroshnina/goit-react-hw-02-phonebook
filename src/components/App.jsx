@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import Filter from "./Filter/Filter";
+import { Container, Title, TitleTwo } from "./App.styled";
 
 export class App extends Component {
   state = {
@@ -53,28 +54,17 @@ export class App extends Component {
     const { filter} = this.state;
     const visibleContactsList = this.getVisibleContacts();
     return (
-      <div
-        style={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101'
-        }}
-      >
-        <h1>Phonebook</h1>
+      <Container>
+        <Title>Phonebook</Title>
         <ContactForm onSubmit={ this.handleFormSubmit} />
         
-        <h2>Contacts</h2>
+        <TitleTwo>Contacts</TitleTwo>
         <Filter value={filter} onChange={this.changeFilter} />
         
         {this.state.contacts !== [] ?
           <ContactList contacts={visibleContactsList} onDeleteContact={this.deleteContact} /> : null}
-        
-        
-      </div>
+         
+      </Container>
     );
   }
 };
