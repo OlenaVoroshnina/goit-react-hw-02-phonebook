@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import ContactForm from "./ContactForm/ContactForm";
-
 import ContactList from "./ContactList/ContactList";
 import Filter from "./Filter/Filter";
 
@@ -77,4 +77,13 @@ export class App extends Component {
       </div>
     );
   }
+};
+
+App.propTypes = {
+    contacts: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+    })),
+    filter: PropTypes.string,
 };

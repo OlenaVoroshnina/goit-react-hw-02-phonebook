@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form } from './ContactForm.styled';
+
 
 class ContactForm extends Component{
     state = {
@@ -59,4 +61,9 @@ class ContactForm extends Component{
     }
 }
 
-export default ContactForm 
+export default ContactForm;
+
+ContactForm.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+};
