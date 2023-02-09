@@ -17,21 +17,21 @@ export class App extends Component {
     filter: '',
   }
 
-  handleFormSubmit = e => {
-    const id = nanoid(4);
-    const name = e.name;
-    const number = e.number;
+  handleFormSubmit = data => {
+    const newContact = {
+      id: nanoid(4),
+      ...data,
+    };
 
-    const contactsLists = [...this.state.contacts];
-    
-    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
-      alert(`${name} is already in contacts.`);
-    } else {
-      contactsLists.push({ id, name, number});
-    }
+    if (this.state.contacts.find(contact => contact.name === data.name)) {
+      alert(`${data.name} is already in contacts.`);
+      return;
+    };
+    this.setState((prevState) => ({
+      contacts: [newContact, ...prevState.contacts],
+    }));
 
-    this.setState({ contacts: contactsLists });
-  }
+  };
 
 
   deleteContact = contactId => {
